@@ -125,6 +125,9 @@ def reformat_dataframe(df):
         df = df.iloc[tanggal_row_idx + 1:].reset_index(drop=True)
 
     # Step 5: Return the cleaned DataFrame
+    if "KETERANGANCBG" in df.columns:
+        df = df.rename(columns={"KETERANGANCBG": "KETERANGAN"})
+        df["CBG"] = ""
     return df
 
 def combine_adjacent_columns(df, target_columns):
